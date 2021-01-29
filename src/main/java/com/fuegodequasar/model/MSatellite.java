@@ -1,5 +1,7 @@
 package com.fuegodequasar.model;
 
+import java.util.List;
+
 import com.fuegodequasar.bean.Message;
 import com.fuegodequasar.bean.Position;
 
@@ -8,7 +10,7 @@ public class MSatellite {
     private String name;
     private double distance;
     private Position position;
-    private Message message;
+    private List<String> message;
 
     public MSatellite() {
 
@@ -44,10 +46,10 @@ public class MSatellite {
     }
 
     public Message getMessage() {
-        return message;
+        return new Message(message);
     }
 
-    public void setMessage(Message message) {
+    public void setMessage(List<String> message) {
         this.message = message;
     }
     
