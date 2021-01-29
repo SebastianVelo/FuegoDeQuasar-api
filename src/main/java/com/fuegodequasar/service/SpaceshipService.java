@@ -29,6 +29,9 @@ public class SpaceshipService {
     private SatelliteRepository sRepository;
 
     public SpaceshipDTO getSpaceship(SatellitesDTO satellitesDTO) throws PositionException, MessageException, SatelliteException {
+        if(satellitesDTO.getSatellites().size() < 2)
+            throw new SatelliteException("Cantidad insuficiente de satelites.");
+
         satellitesDTO.setPositions(this.getSatellites(satellitesDTO));
         Position position = tService.getSpaceshipLocation(satellitesDTO.getPositions(), satellitesDTO.getDistances());
         String message = mService.getMessage(satellitesDTO.getMessages());
@@ -39,9 +42,9 @@ public class SpaceshipService {
         List<Satellite> satellites = new ArrayList<>();
         for(MSatellite msatelite : satellitesDTO.getSatellites()) {
             Satellite satellite = sRepository.findByName(msatelite.getName());
-            if(satellite == null) {
+            if(satellite == null)
                 throw new SatelliteException(msatelite.getName() + " no se encuentra en nuestros registros de satelites.");
-            }
+                
             satellites.add(satellite);
         }
         return satellites;

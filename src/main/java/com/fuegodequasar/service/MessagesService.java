@@ -20,9 +20,9 @@ public class MessagesService {
             String word = null;
             for(int j = 0; j < messages.size(); j++) {
                 //Si es "", continuo a la proxima iteracion
-                if("".equals(messages.get(j).getWords().get(i))) {
+                if("".equals(messages.get(j).getWords().get(i)))
                     continue;
-                }
+
                 if(word == null) {
                     //Si todavia no esta seteado un valor, le seteo el de la iteracion actual
                     word = messages.get(j).getWords().get(i);
@@ -32,9 +32,8 @@ public class MessagesService {
                 } 
             }
             //Si word sigue siendo null luego de toda la iteracion por j, tiro excepcion
-            if(word == null) {
+            if(word == null)
                 throw new MessageException("El mensaje no se puede desencriptar. Una o varias palabras estan en blanco");
-            }
             words.add(word);
         }
         
@@ -46,7 +45,6 @@ public class MessagesService {
         for (int i = 0; i < messages.size(); i++) {
             if(length != messages.get(i).getWords().size())
                 return false;
-            length = messages.get(i).getWords().size();
         }
         return true;
     }
