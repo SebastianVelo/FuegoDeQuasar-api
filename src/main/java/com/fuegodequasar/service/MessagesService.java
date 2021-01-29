@@ -43,10 +43,11 @@ public class MessagesService {
 
     private boolean sameLength(List<Message> messages) {
         int length = messages.get(0).getWords().size();
-        boolean same = true;
         for (int i = 0; i < messages.size(); i++) {
-            same = same && (messages.get(i).getWords().size() == length);
+            if(length != messages.get(i).getWords().size())
+                return false;
+            length = messages.get(i).getWords().size();
         }
-        return same;
+        return true;
     }
 }

@@ -4,6 +4,7 @@ import com.fuegodequasar.dto.SatellitesDTO;
 import com.fuegodequasar.dto.SpaceshipDTO;
 import com.fuegodequasar.exception.MessageException;
 import com.fuegodequasar.exception.PositionException;
+import com.fuegodequasar.exception.SatelliteException;
 import com.fuegodequasar.service.SpaceshipService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,8 @@ public class SpaceshipController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, p.getMessage(), p);
         } catch (MessageException m) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, m.getMessage(), m);
+        } catch (SatelliteException s) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, s.getMessage(), s);
         }
     }
 }
