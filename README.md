@@ -1,6 +1,6 @@
 # Challenge de MercadoLibre
 
-_Esta app expone una API REST para calcular la posicion de una Spaceship con respecto a dos o más satelites mediante trilateracion_
+_Esta app expone una API REST para calcular la posicion de una Spaceship con respecto a dos o más satelites mediante trilateracion, y desencripta el mensaje emitido por los satelites_
 
 ## 🛠️
 
