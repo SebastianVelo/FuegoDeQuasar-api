@@ -15,11 +15,8 @@
 	<name>FuegoDeQuasar</name>
 	<description>Backend for MercadoLibre</description>
 
-    <configuration>
-        <source>11</source> 
-        <target>11</target>
-    </configuration>
-	
+
+
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -82,7 +79,11 @@
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<artifactId>spring-boot-maven-plugin</artifactId>    
+				<configuration>
+        			<source>11</source> 
+        			<target>11</target>
+    			</configuration>
 			</plugin>
 		</plugins>
 	</build>
