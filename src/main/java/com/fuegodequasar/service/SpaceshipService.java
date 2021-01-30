@@ -8,7 +8,6 @@ import com.fuegodequasar.dto.SatellitesDTO;
 import com.fuegodequasar.dto.SpaceshipDTO;
 import com.fuegodequasar.entity.Satellite;
 import com.fuegodequasar.exception.MessageException;
-import com.fuegodequasar.exception.PositionException;
 import com.fuegodequasar.exception.SatelliteException;
 import com.fuegodequasar.model.MSatellite;
 import com.fuegodequasar.repository.SatelliteRepository;
@@ -28,7 +27,13 @@ public class SpaceshipService {
     @Autowired
     private SatelliteRepository sRepository;
 
-    public SpaceshipDTO getSpaceship(SatellitesDTO satellitesDTO) throws PositionException, MessageException, SatelliteException {
+    /**
+     * @param satellitesDTO La lista de satelites enviada por API
+     * @return Spaceship
+     * @throws MessageException Si no se puede desencriptar el mensaje
+     * @throws SatelliteException Si hay algun error con los satelites
+     */
+    public SpaceshipDTO getSpaceship(SatellitesDTO satellitesDTO) throws MessageException, SatelliteException {
         if(satellitesDTO.getSatellites().size() < 2)
             throw new SatelliteException("Cantidad insuficiente de satelites.");
 

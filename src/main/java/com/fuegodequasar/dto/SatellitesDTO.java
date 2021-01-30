@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.fuegodequasar.bean.Message;
 import com.fuegodequasar.entity.Satellite;
-import com.fuegodequasar.exception.PositionException;
 import com.fuegodequasar.model.MSatellite;
 
 public class SatellitesDTO {
@@ -16,46 +15,52 @@ public class SatellitesDTO {
         this.msatellites = new ArrayList<>();
     }
 
-    //Satellites
+    /***
+     * @return ArrayList de MSatellite que llegó por API
+     */
     public List<MSatellite> getSatellites() {
         return msatellites;
     }
 
-    //Distances
+    /***
+     * @return Array de las distancias de los satelites
+     */
     public double[] getDistances() {
         double[] distances = new double[this.msatellites.size()];
-        for(int i = 0; i < this.msatellites.size(); i++) {
+        for (int i = 0; i < this.msatellites.size(); i++) {
             distances[i] = this.msatellites.get(i).getDistance();
         }
         return distances;
     }
 
-    //Messages
+    /***
+     * @return Array de Message de los satelites
+     */
     public List<Message> getMessages() {
-        List<Message> messages = new ArrayList<>(); 
+        List<Message> messages = new ArrayList<>();
         this.msatellites.forEach((final MSatellite s) -> messages.add(s.getMessage()));
         return messages;
     }
-    
-    //Positions
+
+    /***
+     * @return Positions de los satelites transformada en matriz de double
+     */
     public double[][] getPositions() {
         double[][] positions = new double[this.msatellites.size()][];
-        for(int i = 0; i < this.msatellites.size(); i++) {
+        for (int i = 0; i < this.msatellites.size(); i++) {
             positions[i] = this.msatellites.get(i).getPosition().toArray();
         }
         return positions;
     }
 
-    public void setPositions(List<Satellite> satellites) throws PositionException {
+    /***
+     * @param satellites Lista de satelites guardados en la base de datos
+     */
+    public void setPositions(List<Satellite> satellites) {
         this.msatellites.sort((MSatellite s1, MSatellite s2) -> s1.getName().compareTo(s2.getName()));
         satellites.sort((Satellite s1, Satellite s2) -> s1.getName().compareTo(s2.getName()));
-        for(int i = 0; i < satellites.size(); i++) {
-            Satellite satellite = satellites.get(i);
-            if(msatellites.get(i).getName().equals(satellite.getName())) {
-                msatellites.get(i).setPosition(satellite.getX(), satellite.getY());
-            } else {
-                throw new PositionException("Uno o mas de los satelites tiene un nombre incorrecto");
-            }
+        for (int i = 0; i < satellites.size(); i++) {
+            msatellites.get(i).setPosition(satellites.get(i).getX(), satellites.get(i).getY());
         }
     }
 

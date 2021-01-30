@@ -1,10 +1,9 @@
 package com.fuegodequasar.dto;
 
-
 import com.fuegodequasar.bean.Position;
 
 public class SpaceshipDTO {
-    
+
     private Position position;
     private String message;
 
