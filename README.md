@@ -19,9 +19,7 @@ https://github.com/SebastianVelo/FuegoDeQuasar-api/blob/main/src/main/resources/
 
 ## API 🚀
 
-### USER
-
-**PUT**
+### TOPSECRET
 
 * **POST**
 
